@@ -44,4 +44,6 @@ public class AdminServiceImpl implements AdminService {
 		return (List<Booking>) bookrepo.findAll();
 	}
 
+	
+
 }

@@ -1,13 +1,19 @@
 package com.example.demo.controller;
 
-import java.util.List;  
+import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.Admin;
@@ -37,10 +43,11 @@ public class Controller {
 		return mv;
 	}
 	@GetMapping("/logout")
-	public ModelAndView logout() {
+	public String logout(HttpServletRequest request) {
+		HttpSession sess =request.getSession();
+		sess.invalidate();
+		return "index";
 		
-		ModelAndView mv = new ModelAndView("index");
-		return mv;
 	}
 	@GetMapping("/admincontrol")
 	public ModelAndView admincontrol() {
@@ -61,12 +68,49 @@ public class Controller {
 		ModelAndView mv = new ModelAndView("register","usr",new User());
 		return mv;
 	}
-	@PostMapping("/adduser")
-	public ModelAndView adduser(@ModelAttribute("usr") User user) {
-		usrserv.adduser(user);
+	@GetMapping("/profile")
+	public ModelAndView profile() {
+		ModelAndView mv = new ModelAndView("profile");
+		return mv;
+	}
+	@GetMapping("/viewprofile")
+	public ModelAndView ViewProfile(HttpServletRequest request) {
+		HttpSession sess = request.getSession();
+		String id =(String) sess.getAttribute("id");
+		User usr=  usrserv.viewprofile(id);
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("register");
+		
+		mv.setViewName("viewprofile");
+		mv.addObject("usr",usr);
+		return mv;
+	}
+	
+	
+	
+	@PostMapping("/adduser")
+	public ModelAndView adduser(@Valid  @ModelAttribute("usr") User user,BindingResult result,HttpServletRequest req) {
+//		
+		ModelAndView mv = new ModelAndView();
+    	mv.setViewName("register");
+		if(result.hasErrors()) {
+			
+			mv.addObject("name","Please Enter Details Properly");
+		}
+		else {
+			String id=req.getParameter("id");
+			Optional<User> ur=usrserv.verifyuser(id);
+	if(ur.isPresent()) {
+		mv.addObject("name","User Name is Already Taken");
+		
+	}else {
+		
+		System.out.println(user);
+		usrserv.adduser(user);
 		mv.addObject("name","Register Successfully");
+		
+	}
+			
+		}
 		return mv;
 		
 	}
@@ -120,10 +164,10 @@ public class Controller {
 	}
 	
 	@PostMapping("/checklogin")
-	public ModelAndView checklogin(HttpServletRequest request)
+	public ModelAndView checklogin(HttpServletRequest request,HttpSession sess)
 	{
 		ModelAndView mv =  new ModelAndView();
-		
+		request.getSession();
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		
@@ -131,9 +175,22 @@ public class Controller {
 		
 		if(usr!=null)
 		{
+			if(sess.isNew()) {
+				mv.setViewName("userlogin");
+				mv.addObject("error","Session has Expired");
+			}
+			else {
+				sess.setMaxInactiveInterval(30);
+				sess.setAttribute("id", id);
+				System.out.println("id:" + id);
+				mv.addObject("log","LOG OUT");
+				mv.setViewName("index");
+				mv.addObject("name", id);
+			}
 			
-			mv.setViewName("index");
-			mv.addObject("name", id);
+			System.out.println(sess.isNew());
+			
+			
 		}
 		else
 		{
@@ -143,6 +200,25 @@ public class Controller {
 		return mv;
 	}
 	
+	@RequestMapping("/pricecal")
+	public ModelAndView calprice(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		String dis=request.getParameter("distance");
+		String wi=request.getParameter("weight");
+		int ans=Integer.parseInt(dis)*2+Integer.parseInt(wi);
+		System.out.println(dis+" "+wi);
+		mv.setViewName("pricing");
+		mv.addObject("ans", ans);
+		
+		
+		return mv;
+		
+		
+	}
+	
+	
+	
+	
 	@GetMapping("/sendcourier")
 	public ModelAndView sendcourier() {
 		ModelAndView mv = new ModelAndView("booking","cour",new Booking());
@@ -151,10 +227,22 @@ public class Controller {
 	
 	@PostMapping("/newcourier")
 	public ModelAndView newcourier(@ModelAttribute("cour") Booking book) {
-		usrserv.newcourier(book);
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("booking");
-		mv.addObject("name","Delivery Boy will pick Your Courier");
+		String oid=book.getId();
+		User usr=usrserv.checkbook(oid);
+		
+		ModelAndView mv = new ModelAndView("booking","cour",new Booking());
+		
+		if(usr!=null)
+		{
+			usrserv.newcourier(book);
+			mv.setViewName("booking");
+			mv.addObject("name","Delivery Boy will pick Your Courier");
+		}
+		else
+		{
+			mv.setViewName("booking");
+			mv.addObject("name","Please Enter Correct Username");
+		}
 		return mv;
 		
 	}
@@ -167,4 +255,45 @@ public class Controller {
 		mv.addObject("cour",cour);
 		return mv;
 	}
+	
+	@GetMapping("/myorders")
+	public ModelAndView myorders(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		HttpSession sess = request.getSession();
+		String id =(String) sess.getAttribute("id");
+			
+		List<Booking> cour =usrserv.myorders(id);
+		
+		System.out.println(cour);	
+		if(cour!=null)
+		{
+			mv.setViewName("myorders");
+			mv.addObject("name","Your Orders");
+			mv.addObject("cour",cour);
+		}
+		else
+		{
+			mv.setViewName("myorders");
+			mv.addObject("name","You no Orders");
+		}
+		return mv;
+		
+	}
+	
+	@GetMapping("/deleteorder")
+	public ModelAndView deleteorder(HttpServletRequest request) {
+		HttpSession sess = request.getSession();
+		ModelAndView mv = new ModelAndView();
+		String id =(String) sess.getAttribute("id");
+		String str =usrserv.deleteorder(id);
+		if(str=="DELETE Sucessfully") {
+			mv.setViewName("myorders");
+			
+		}
+		return mv;
+		
+		
+	}
+	
+	
 }

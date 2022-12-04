@@ -10,5 +10,6 @@ public interface AdminService {
 	public Admin checkadmin(String username,String password);
 	public List<User> viewallusers();
 	public List<Booking> viewallorders();
+	
 
 }

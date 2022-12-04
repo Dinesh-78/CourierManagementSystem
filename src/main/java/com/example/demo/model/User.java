@@ -1,16 +1,23 @@
 package com.example.demo.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="users")
 public class User {
 	@Id
+	@NotEmpty
 	private String id;
+	@NotEmpty
+	@Email(message ="Enter A Valid Email")
 	private String email;
+	@Size(min = 8,max=15,message = "Enter 8 Characters of PassWord")
 	private String password;
 	public String getId() {
 		return id;
@@ -30,7 +37,5 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 
 }

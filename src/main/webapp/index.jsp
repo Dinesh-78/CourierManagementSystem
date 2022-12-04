@@ -7,21 +7,30 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="css/index.css"  />
-<title>Insert title here</title>
+ <link rel = "icon" href = 
+"images/log.jpg" 
+        type = "image/x-icon">
+<title>Courier Management System</title>
 <style>
-ul {
+.ele {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: black;
 }
 
-li {
+body{
+       background: url("images/background.jpg");
+        background-size:210vh 90vh;
+        background-repeat: no-repeat;
+ opacity: 0.8;
+}
+.elel{
   float: left;
 }
 
-li a {
+.elel a {
   display: block;
   color: white;
   text-align: center;
@@ -29,90 +38,121 @@ li a {
   text-decoration: none;
 }
 
-li a:hover:not(.active) {
-  background-color: #111;
+.elel a:hover:not(.active) {
+  background-color: orange;
 }
 
 .active {
   background-color: #04AA6D;
 }
+.truck{
+  margin-top: 2px;
+  height: 40%;
+  width: 100%;
+}
+.foot{
+
+ background-color:#9fbfdf;
+ 
+}
+.foot h1{
+  margin-top:10vh;
+  color: red;
+  
+}
+
+.foot {
+display:inline-flex;
+ 
+ 
+
+}
+.foot  ul{
+margin-left:30vh;
+ margin-top: 8vh;
+ margin-right: 40px;
+ 
+}
+
+.foot  ul li{
+  margin-top: 20px;
+  
+  text-transform: uppercase;
+  padding: 5px 8px;
+  cursor: pointer;
+}
+.foot  ul li:hover{
+   font-size:15px;
+   padding: 8px 10px;
+}
+
+.bac{
+height:23vh;
+ 
+ color: white;
+}
+.bac h1{
+ margin: 60vh 30vh;
+ text-transform: uppercase;
+ 
+}
+.bac h1 span{
+  font-size: 80px;
+   color:yellow;
+   
+}
 </style>
 </head>
 <body>
 
-<ul>
-  <li><a href="/">HOME</a></li>
-  <li><a href="/about">ABOUT</a></li>
-  <li><a href="pricing">PRICING</a><li>
-  <li><a href="/booking">BOOKING</a></li>
-   <li><a href="adminlogin">ADMIN</a></li>
-  <li><a href="userlogin">CUSTOMER</a></li>
-  <li><a href="userreg">REGISTER</a></li>
-  <li style="float: right;"><a href="/logout">LOG OUT</a></li>
-  <li style="float: right;"><a >${name}</a></li>
+<ul class="ele">
+  <li class="elel"><a href="/">HOME</a></li>
+  <li class="elel"><a href="/about">ABOUT</a></li>
+  <li class="elel"><a href="pricing">PRICING</a><li>
+  <li class="elel"><a href="/booking">BOOKING</a></li>
+   <li class="elel"><a href="adminlogin">ADMIN</a></li>
+  <li class="elel" style="float: right;"><a href="userlogin">LOGIN</a></li>
+  <li class="elel" style="float: right;"><a href="userreg">SIGN UP</a></li>
+  <li class="elel" style="float: right;"><a href="/logout">${log}</a></li>
+  <li class="elel" style="float: right;"><a href="profile" >${name}</a></li>
   
   
 </ul>
-<img src="images/44.jpg" alt="">
- <div class="tail">
-        
-        <div class="row">
-           <div class="col">
-              <h3>Other services</h3>
-              <ul>
-                  <li><a>Groceries Delivery</a></li>
-                  <li><a>Book Daily wage Workers </a></li>
-                  <li><a>Transport</a> </li>
-                  <li><a>Document Details</a></li>
-              </ul>
-           </div>
-           <div class="col">
-              <h3>Quick links</h3>
-              <ul>
-                  <li><a>Track the Order</a></li>
-                  <li><a>Your Bills </a></li>
-              </ul>
-           </div>
-           <div class="col">
-              <h3>Social Media</h3>
-              <ul>
-                  <li> <a> facebook</a></li>
-                  <li class="inst">  Instagram</li>
-                  <li class="twit">  Twitter</li>
-              </ul>
-           </div>
-           <div class="comment">
-            <h4>Leaving a single comment helps  to growth our company</h4>
-            <input placeholder="comment me" />
-             <button>Submit</button>
-            </div>
-        </div>
-        <div class="cards">
-            
-            <div class="card">
-                <h1> Our Deliveries</h1> 
-                <br>
-                <h1>+100</h1>              
-            </div>
-            <div class="card">
-                <h1>Our Customers</h1> 
-                <br>
-                <h1>+100</h1>   
-            </div>
-            <div class="card">
-                <h1>Our Branches</h1>
-                
-                <br>
-                <h1>+100</h1>
-            </div>
-            <div class="card">
-                <h1>Our Employees</h1>
-                <br>
-                <h1>+100</h1>           
-            </div>
-            </div>
-        
-       
-       </div> 
+<div class="bac">
+ <h1>Welcome To <br><span>Quick </span> courier Services</h1>
+ 
+
+</div>
+
+ <div class="foot">
+
+ <h1>Courier Service</h1>
+
+  <ul >
+  Company
+ <li><a href="about">Blogs</a></li>
+<li><a href="pricing">Service</a></li>
+<li><a href="/facebook">News</a></li>
+
+ </ul>
+ <ul>
+  Social Media
+<li><a href="/Facebook">Facebook </a></li>
+<li><a href="/Instagram">Instagram </a></li>
+<li><a href="/Twitter">Twitter</a></li>
+
+<li><a href="/comment.jsp">Contact Us </a></li>
+
+ </ul>
+ <ul >
+  <img class="truck" src="images/trucks.png" alt="" >
+ 
+ </ul>
+
+ 
+ </div>
+ 
+
+
 </body>
 </html>

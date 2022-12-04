@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>List Of Orders</h1>
+<h1>${name}</h1>
 <table align=center border=2>
 
 <tr>
@@ -26,6 +26,8 @@
 <th>Receiver City</th>
 <th>Receiver state</th>
 <th>Receiver pin code</th>
+<th>Status</th>
+<th>Cancel</th>
 
 
 
@@ -49,6 +51,8 @@
 <td> <c:out value="${cour.rstate}"></c:out>   </td>
 <td> <c:out value="${cour.rpincode}"></c:out>   </td>
 
+<td> On The WaY   </td>
+<td> <button> <a href="deleteorder">  Cancel Courier</a></button>  </td>
 
 
 

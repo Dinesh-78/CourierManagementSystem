@@ -73,10 +73,48 @@ html {
     display: block;
   }
 }
+.ele {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+.elel{
+  float: left;
+}
+
+.elel a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.elel a:hover:not(.active) {
+  background-color: orange;
+}
+
+
+
 </style>
 </head>
 <body>
-
+<ul class="ele">
+  <li class="elel"><a href="/">HOME</a></li>
+  <li class="elel"><a href="/about">ABOUT</a></li>
+  <li class="elel"><a href="pricing">PRICING</a><li>
+  <li class="elel"><a href="/booking">BOOKING</a></li>
+   <li class="elel"><a href="adminlogin">ADMIN</a></li>
+  <li class="elel" style="float: right;"><a href="userlogin">LOGIN</a></li>
+  <li class="elel" style="float: right;"><a href="userreg">SIGN UP</a></li>
+  <li class="elel" style="float: right;"><a href="/logout">${log}</a></li>
+  <li class="elel" style="float: right;"><a href="profile" >${name}</a></li>
+  
+  
+</ul>
 <div class="about-section">
   <h1>About Us</h1>
   <p>We are only thinking about customers satisfaction</p>
@@ -90,10 +128,10 @@ html {
       <img src="/images/1.jpg" alt="" style="width:100%">
       <div class="container">
         <a href="https://www.instagram.com/">Review 1</a>
-        <p class="title">Mukesh</p>
+        <p class="title">Manikanta Reddy</p>
         <p>This Website is good and realistic</p>
         <p>contact1@gmail.com</p>
-        <a href=""></a><button class="button">Contact</button></a>
+        <a href="https://www.instagram.com/manikanta_reddy_.25/"><button class="button">Contact</button></a>
         
       </div>
     </div>
@@ -104,10 +142,10 @@ html {
       <img src="/images/2.jpg" alt="" style="width:100%">
       <div class="container">
         <a href="">Review 2</a>
-        <p class="title">Suresh</p>
+        <p class="title">Vinod Reddy</p>
         <p>Just Trust the site And go On</p>
         <p>person2@gmail.com</p>
-        <a href=""></a><button class="button">Contact</button></a>
+        <a href="https://www.instagram.com/vinod_reddy_8/"><button class="button">Contact</button></a>
       </div>
     </div>
   </div>
@@ -120,7 +158,7 @@ html {
         <p class="title">Mahesh</p>
         <p>One Time Experience</p>
         <p>person3@gmail.com</p>
-        <a href=""></a><button class="button">Contact</button></a>
+        <a href="https://www.instagram.com/"><button class="button">Contact</button></a>
       </div>
     </div>
   </div>

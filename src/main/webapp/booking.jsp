@@ -12,11 +12,10 @@ body {
   font-family: Arial;
   font-size: 17px;
   padding: 8px;
+  background-color: #e6e6e6;
 }
 
-* {
-  box-sizing: border-box;
-}
+
 h2{
    text-align: center;
    background-color: pink;
@@ -84,10 +83,96 @@ span.price {
   float: right;
   color: grey;
 }
+.truck{
+  margin-top: 2px;
+  height: 40%;
+  width: 100%;
+}
+.foot{
+ 
+ 
+ 
+}
+.foot h1{
+  margin-top:10vh;
+  color: red;
+  
+}
+
+.foot {
+
+display:inline-flex;
+ 
+ 
+
+}
+.foot  ul{
+margin-left:30vh;
+ margin-top: 8vh;
+ margin-right: 40px;
+ 
+}
+
+.foot  ul li{
+  margin-top: 20px;
+  
+  text-transform: uppercase;
+  padding: 5px 8px;
+  cursor: pointer;
+}
+.foot  ul li:hover{
+   font-size:15px;
+   padding: 8px 10px;
+}
+
+
+
+.back{
+ width: 210vh;
+ height: 90vh;
+ opacity: 0.8;
+}
+.ele {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+.elel{
+  float: left;
+}
+
+.elel a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.elel a:hover:not(.active) {
+  background-color: orange;
+}
+
 
 </style>
 </head>
 <body>
+<ul class="ele">
+  <li class="elel"><a href="/">HOME</a></li>
+  <li class="elel"><a href="/about">ABOUT</a></li>
+  <li class="elel"><a href="pricing">PRICING</a><li>
+  <li class="elel"><a href="/booking">BOOKING</a></li>
+   <li class="elel"><a href="adminlogin">ADMIN</a></li>
+  <li class="elel" style="float: right;"><a href="userlogin">LOGIN</a></li>
+  <li class="elel" style="float: right;"><a href="userreg">SIGN UP</a></li>
+  <li class="elel" style="float: right;"><a href="/logout">${log}</a></li>
+  <li class="elel" style="float: right;"><a href="profile" >${name}</a></li>
+  
+  
+</ul>
 <h1>${name}</h1>
 <h2>Please fill details To Courier Your Item</h2>
       <form action="newcourier" method="post" modelAttribute="cour" >
@@ -130,6 +215,33 @@ span.price {
           </div>
            <button>SUBMIT</button>
           </form>
+ 
+ <div class="foot">
+
+ <h1>Courier Service</h1>
+
+  <ul >
+  Company
+ <li><a href="about">Blogs</a></li>
+<li><a href="pricing">Service</a></li>
+<li><a href="/facebook">News</a></li>
+
+ </ul>
+ <ul>
+  Social Media
+<li><a href="/Facebook">Facebook </a></li>
+<li><a href="/Instagram">Instagram </a></li>
+<li><a href="/Twitter">Twitter</a></li>
+
+<li><a href="/Raise a query">Raise a query </a></li>
+
+ </ul>
+ <ul>
+  <img class="truck" src="images/trucks.png" alt="">
+ 
+ </ul>
+ </div>
+ 
 
 </body>
 </html>
